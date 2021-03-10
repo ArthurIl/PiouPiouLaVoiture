@@ -47,7 +47,7 @@ public class Requirement : MonoBehaviour, IComparable<Requirement>
         RaycastHit hit;
         if (Physics.Raycast(origin, direction, out hit, lenght, layerMask))
         {
-            Debug.DrawRay(origin, direction*hit.distance, Color.green);
+            Debug.DrawRay(origin, direction * hit.distance, Color.green);
         }
         else
         {

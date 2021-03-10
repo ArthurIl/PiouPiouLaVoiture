@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System;
+using System.Collections;
 
 public class CarControler : MonoBehaviour
 {
@@ -10,19 +12,22 @@ public class CarControler : MonoBehaviour
 
     public float horizontalInput;
     public float verticalInput;
+    public float shootInput;
 
     public float maxSteerAngle = 42;
     public float motorForce = 500;
 
+    public Transform bulletPoint;
+    public float shootDistance;
+    public ParticleSystem bulletEffect;
+    public LayerMask layer;
+    public Collider[] carCollider;
+    public float cooldown;
+    bool canShoot = true;
+
     private void Start()
     {
         rb.centerOfMass = centerOfMass.localPosition;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void FixedUpdate()
@@ -30,6 +35,9 @@ public class CarControler : MonoBehaviour
         Steer();
         Accelerate();
         UpdateWheelPoses();
+
+        if(shootInput >= 0.2f && canShoot == true || shootInput <= -0.2f && canShoot == true)
+        StartCoroutine(Shoot());
     }
 
     void Steer()
@@ -71,5 +79,24 @@ public class CarControler : MonoBehaviour
     {
         horizontalInput = 0;
         verticalInput = 0;
+    }
+
+    public IEnumerator Shoot()
+    {
+        canShoot = false;
+        RaycastHit hit;
+
+        if (Physics.Raycast(bulletPoint.position, transform.forward, out hit, shootDistance, layer))
+        {
+            Debug.DrawRay(bulletPoint.position, transform.forward * hit.distance, Color.white);
+            for (int i = 0; i < carCollider.Length; i++)
+            {
+                Physics.IgnoreCollision(carCollider[i], hit.collider.gameObject.GetComponent<Collider>());
+            }
+            Instantiate(bulletEffect, bulletPoint.position, Quaternion.identity);
+        }
+        yield return new WaitForSeconds(cooldown);
+        canShoot = true;
+
     }
 }

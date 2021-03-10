@@ -54,11 +54,12 @@ public class Agent : MonoBehaviour, IComparable<Agent>
         inputs[6] = (float) Math.Tanh(rb.angularVelocity.y * 0.1f);
 
         inputs[7] = 1;
+        inputs[8] = ObstacleSensor(transform.position + Vector3.up * 0.2f, transform.forward, 4);
     }
 
     RaycastHit hit;
     float range = 4;
-    public LayerMask layerMask;
+    public LayerMask layerMask, DestroyableMask;
     float RaySensor(Vector3 pos, Vector3 direction, float lenght)
     {
         if (Physics.Raycast(pos, direction, out hit, lenght * range, layerMask))
@@ -75,12 +76,25 @@ public class Agent : MonoBehaviour, IComparable<Agent>
         }
     }
 
+    float ObstacleSensor(Vector3 pos, Vector3 direction, float lenght)
+    {
+        if (Physics.Raycast(pos, direction, out hit, lenght * range, DestroyableMask))
+        {
+            return 1f;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
     void OutputUpdate()
     {
         net.FeedForward(inputs);
 
         carControler.horizontalInput = net.neurons[net.layers.Length-1][0];
         carControler.verticalInput = net.neurons[net.layers.Length-1][1];
+        carControler.shootInput = net.neurons[net.layers.Length - 1][2];
     }
 
     float currentDistance;

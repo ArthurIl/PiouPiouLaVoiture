@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
+    public static Manager instance;
+
     public int populationSize;
     public float trainingDuration = 30;
     public float mutationRate = 5;
@@ -18,6 +20,10 @@ public class Manager : MonoBehaviour
 
     public CameraController cameraController;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         StartCoroutine(InitCoroutine());
