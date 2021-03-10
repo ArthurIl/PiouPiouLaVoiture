@@ -144,7 +144,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8748892135801146194, guid: a34a7d98fef64f64c84602029fb79101, type: 3}
+  - {fileID: 2100000, guid: bb8d8883be8c4c64b95319ef33bdcb89, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -337,7 +337,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8748892135801146194, guid: a34a7d98fef64f64c84602029fb79101, type: 3}
+  - {fileID: 2100000, guid: aa17337429393e243ac6de2841aa23d8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -501,6 +501,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   render: {fileID: 6602795719092383230}
+  gunBarrel: {fileID: 653063097439802195}
+  gunTrigger: {fileID: 2821601301841975593}
   firstMaterial: {fileID: 2100000, guid: aa17337429393e243ac6de2841aa23d8, type: 2}
   mutatedMaterial: {fileID: 2100000, guid: 67c977041a0735b4db3c88539769a1aa, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 2e55c1d8a98300843b247b5f2f9e6456, type: 2}
@@ -537,13 +539,9 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 2048
-  carCollider:
-  - {fileID: 5503471417925024852}
-  - {fileID: 5503471419505625765}
-  - {fileID: 5503471418982918514}
-  - {fileID: 5503471417961141634}
-  - {fileID: 5503471418942789228}
+  carCollider: {fileID: 5503471417925024852}
   cooldown: 2
+  obstacleDestroyed: []
 --- !u!114 &5503471419290956145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -934,7 +932,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8748892135801146194, guid: a34a7d98fef64f64c84602029fb79101, type: 3}
+  - {fileID: 2100000, guid: bb8d8883be8c4c64b95319ef33bdcb89, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1179,7 +1177,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8748892135801146194, guid: a34a7d98fef64f64c84602029fb79101, type: 3}
+  - {fileID: 2100000, guid: aa17337429393e243ac6de2841aa23d8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

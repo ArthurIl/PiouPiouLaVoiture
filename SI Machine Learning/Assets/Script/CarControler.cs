@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CarControler : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class CarControler : MonoBehaviour
     public float shootDistance;
     public ParticleSystem bulletEffect;
     public LayerMask layer;
-    public Collider[] carCollider;
+    public Collider carCollider;
     public float cooldown;
     bool canShoot = true;
 
@@ -36,7 +37,7 @@ public class CarControler : MonoBehaviour
         Accelerate();
         UpdateWheelPoses();
 
-        if(shootInput >= 0.2f && canShoot == true || shootInput <= -0.2f && canShoot == true)
+        if(shootInput >= 0.5f && canShoot == true || shootInput <= -0.5f && canShoot == true)
         StartCoroutine(Shoot());
     }
 
@@ -79,8 +80,20 @@ public class CarControler : MonoBehaviour
     {
         horizontalInput = 0;
         verticalInput = 0;
+        if(obstacleDestroyed.Count != 0)
+        {
+            for (int i = 0; i < obstacleDestroyed.Count; i++)
+            {
+                if (obstacleDestroyed[i] != null)
+                {
+                    Physics.IgnoreCollision(carCollider, obstacleDestroyed[i].GetComponent<Collider>(), false);
+                    obstacleDestroyed.Remove(obstacleDestroyed[i]);
+                }
+            }
+        }
     }
 
+    public List<Collider> obstacleDestroyed = new List<Collider>();
     public IEnumerator Shoot()
     {
         canShoot = false;
@@ -89,10 +102,8 @@ public class CarControler : MonoBehaviour
         if (Physics.Raycast(bulletPoint.position, transform.forward, out hit, shootDistance, layer))
         {
             Debug.DrawRay(bulletPoint.position, transform.forward * hit.distance, Color.white);
-            for (int i = 0; i < carCollider.Length; i++)
-            {
-                Physics.IgnoreCollision(carCollider[i], hit.collider.gameObject.GetComponent<Collider>());
-            }
+            Physics.IgnoreCollision(carCollider, hit.collider.gameObject.GetComponent<Collider>(),true);
+            obstacleDestroyed.Add(hit.collider.gameObject.GetComponent<Collider>());
             Instantiate(bulletEffect, bulletPoint.position, Quaternion.identity);
         }
         yield return new WaitForSeconds(cooldown);

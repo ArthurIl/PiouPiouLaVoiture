@@ -115,7 +115,7 @@ public class Agent : MonoBehaviour, IComparable<Agent>
         nextCheckpointDist = (transform.position - checkpoint.position).magnitude;
     }
 
-    public Renderer render;
+    public Renderer render, gunBarrel, gunTrigger;
     public Material firstMaterial;
     public Material mutatedMaterial;
     public Material defaultMaterial;
@@ -123,16 +123,22 @@ public class Agent : MonoBehaviour, IComparable<Agent>
     public void SetFirstMaterial()
     {
         render.material = firstMaterial;
+        gunBarrel.material = firstMaterial;
+        gunTrigger.material = firstMaterial;
     }
 
     public void SetMutatedMaterial()
     {
-        render.material = mutatedMaterial;  
+        render.material = mutatedMaterial;
+        gunBarrel.material = mutatedMaterial;
+        gunTrigger.material = mutatedMaterial;
     }
 
     public void SetDefaultMaterial()
     {
-        render.material = defaultMaterial; 
+        render.material = defaultMaterial;
+        gunBarrel.material = defaultMaterial;
+        gunTrigger.material = defaultMaterial;
     }
 
     public int CompareTo(Agent other)

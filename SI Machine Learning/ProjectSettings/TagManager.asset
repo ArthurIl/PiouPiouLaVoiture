@@ -17,7 +17,7 @@ TagManager:
   - Agent
   - Bullet
   - Destroyable
-  - 
+  - CarCollider
   - 
   - 
   - 
