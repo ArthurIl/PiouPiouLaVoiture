@@ -20,7 +20,7 @@ public class CarControler : MonoBehaviour
 
     public Transform bulletPoint;
     public float shootDistance;
-    public ParticleSystem bulletEffect;
+    public ParticleSystem bulletEffect, explosionEffect;
     public LayerMask layer;
     public Collider carCollider;
     public float cooldown;
@@ -113,9 +113,11 @@ public class CarControler : MonoBehaviour
             {
                 Physics.IgnoreCollision(carCollider, hit.collider.gameObject.GetComponent<Collider>(), true);
                 obstacleDestroyed.Add(hit.collider.gameObject.GetComponent<Collider>());
+                Instantiate(bulletEffect, bulletPoint.position, Quaternion.identity);
+                Instantiate(explosionEffect, hit.transform.position, Quaternion.identity);
             }
             Debug.DrawRay(bulletPoint.position, transform.forward * hit.distance, Color.white);
-            Instantiate(bulletEffect, bulletPoint.position, Quaternion.identity);
+
         }
         yield return new WaitForSeconds(cooldown);
         canShoot = true;

@@ -581,11 +581,12 @@ MonoBehaviour:
   bulletPoint: {fileID: 5512704893981289025}
   shootDistance: 10
   bulletEffect: {fileID: 5055610149324626596, guid: b77bc8e5ce2c20a458df34f89cca2c5b, type: 3}
+  explosionEffect: {fileID: 5055610149324626596, guid: 4a142c44b2bbefd488118c2b4aa414da, type: 3}
   layer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 4096
   carCollider: {fileID: 5503471417925024852}
-  cooldown: 2
+  cooldown: 10
   obstacleDestroyed: []
 --- !u!114 &5503471419290956145
 MonoBehaviour:
@@ -610,7 +611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5503471417925024858}
   - component: {fileID: 5503471417925024852}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: MainCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -124,9 +124,15 @@ public class Manager : MonoBehaviour
     private void Focus()
     {
         cameraController.target = agents[0].transform;
+        cameraController.isFree = false;
             
         NeuralNetworkViewer.instance.agent = agents[0];
         NeuralNetworkViewer.instance.RefreshAxons();
+    }
+
+    public void ToggleFreeCam()
+    {
+        cameraController.isFree = true;
     }
 
     public void ReFocus()

@@ -18,13 +18,9 @@ TagManager:
   - Checkpoint
   - Agent
   - Boost
-  - Bullet
+  - 
   - Destroyable
   - CarCollider
-  - 
-  - 
-  - 
-  - 
   - 
   - 
   - 
