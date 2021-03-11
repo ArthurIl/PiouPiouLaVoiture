@@ -25,6 +25,7 @@ public class CarControler : MonoBehaviour
     public Collider carCollider;
     public float cooldown;
     bool canShoot = true;
+    RaycastHit hit;
 
     private void Start()
     {
@@ -37,7 +38,7 @@ public class CarControler : MonoBehaviour
         Accelerate();
         UpdateWheelPoses();
 
-        if(shootInput >= 0.5f && canShoot == true || shootInput <= -0.5f && canShoot == true)
+        if(shootInput >= 0.5f && canShoot == true || shootInput <= -0.5f && canShoot == true )
         StartCoroutine(Shoot());
     }
 
@@ -92,30 +93,31 @@ public class CarControler : MonoBehaviour
                 }
             }
         }
+        canShoot = true;
     }
 
     public List<Collider> obstacleDestroyed = new List<Collider>();
     public IEnumerator Shoot()
     {
         canShoot = false;
-        RaycastHit hit;
 
         if (Physics.Raycast(bulletPoint.position, transform.forward, out hit, shootDistance, layer))
         {
             bool addIt = true;
             for (int i = 0; i < obstacleDestroyed.Count; i++)
             {
-                if(hit.transform.gameObject != obstacleDestroyed[i])
+                if(hit.transform.gameObject.transform.position == obstacleDestroyed[i].transform.position)
                 {
                     addIt = false;
                 }
             }
+            
             if (addIt == true)
             {
-                Physics.IgnoreCollision(carCollider, hit.collider.gameObject.GetComponent<Collider>(), true);
-                obstacleDestroyed.Add(hit.collider.gameObject.GetComponent<Collider>());
-                Instantiate(bulletEffect, bulletPoint.position, Quaternion.identity);
-                Instantiate(explosionEffect, hit.transform.position, Quaternion.identity);
+               Physics.IgnoreCollision(carCollider, hit.collider.gameObject.GetComponent<Collider>(), true);
+               obstacleDestroyed.Add(hit.collider.gameObject.GetComponent<Collider>());
+               Instantiate(bulletEffect, bulletPoint.position, Quaternion.identity);
+               Instantiate(explosionEffect, hit.transform.position, Quaternion.identity);
             }
             Debug.DrawRay(bulletPoint.position, transform.forward * hit.distance, Color.white);
 

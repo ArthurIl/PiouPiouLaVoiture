@@ -544,7 +544,7 @@ MonoBehaviour:
     m_Bits: 1
   DestroyableMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 4096
   render: {fileID: 6602795719092383230}
   gunBarrel: {fileID: 653063097439802195}
   gunTrigger: {fileID: 2821601301841975593}
@@ -586,7 +586,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   carCollider: {fileID: 5503471417925024852}
-  cooldown: 10
+  cooldown: 1
   obstacleDestroyed: []
 --- !u!114 &5503471419290956145
 MonoBehaviour:
