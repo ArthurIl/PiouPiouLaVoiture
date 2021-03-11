@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TimeManipulator : MonoBehaviour
 {
-    [Range(0.5f, 20f)] public float timeScale = 1;
+    [Range(0.5f, 3f)] public float timeScale = 1;
 
     private float baseTimeScale;
     private float baseFixedUpdateRate;
