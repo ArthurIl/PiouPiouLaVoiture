@@ -101,9 +101,20 @@ public class CarControler : MonoBehaviour
 
         if (Physics.Raycast(bulletPoint.position, transform.forward, out hit, shootDistance, layer))
         {
+            bool addIt = true;
+            for (int i = 0; i < obstacleDestroyed.Count; i++)
+            {
+                if(hit.transform.gameObject != obstacleDestroyed[i])
+                {
+                    addIt = false;
+                }
+            }
+            if (addIt == true)
+            {
+                Physics.IgnoreCollision(carCollider, hit.collider.gameObject.GetComponent<Collider>(), true);
+                obstacleDestroyed.Add(hit.collider.gameObject.GetComponent<Collider>());
+            }
             Debug.DrawRay(bulletPoint.position, transform.forward * hit.distance, Color.white);
-            Physics.IgnoreCollision(carCollider, hit.collider.gameObject.GetComponent<Collider>(),true);
-            obstacleDestroyed.Add(hit.collider.gameObject.GetComponent<Collider>());
             Instantiate(bulletEffect, bulletPoint.position, Quaternion.identity);
         }
         yield return new WaitForSeconds(cooldown);
