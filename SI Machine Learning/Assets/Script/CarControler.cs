@@ -80,6 +80,7 @@ public class CarControler : MonoBehaviour
     {
         horizontalInput = 0;
         verticalInput = 0;
+        motorForce = 500;
         if(obstacleDestroyed.Count != 0)
         {
             for (int i = 0; i < obstacleDestroyed.Count; i++)

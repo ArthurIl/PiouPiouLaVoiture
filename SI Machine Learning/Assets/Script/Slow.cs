@@ -7,6 +7,7 @@ public class Slow : MonoBehaviour
     public LayerMask LayerMask;
     public int BoostValue = -200;
     public int minBoostValue = 300;
+    public int BoostDuration = 5;
 
     private void OnTriggerEnter(Collider col)
     {
@@ -23,7 +24,7 @@ public class Slow : MonoBehaviour
         if (Go.GetComponentInParent<CarControler>().motorForce > minBoostValue)
         {
             Go.GetComponentInParent<CarControler>().motorForce += BoostValue;
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(BoostDuration);
             Go.GetComponentInParent<CarControler>().motorForce = val;
         }
 
