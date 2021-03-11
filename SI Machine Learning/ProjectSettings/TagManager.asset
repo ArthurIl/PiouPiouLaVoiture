@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - boost
+  - car
   layers:
   - Default
   - TransparentFX
@@ -15,9 +17,13 @@ TagManager:
   - 
   - Checkpoint
   - Agent
+  - Boost
   - Bullet
   - Destroyable
   - CarCollider
+  - 
+  - 
+  - 
   - 
   - 
   - 
