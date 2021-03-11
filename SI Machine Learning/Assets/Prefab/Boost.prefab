@@ -110,7 +110,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   BoostValue: 200
   maxBoostValue: 700
-  minBoostValue: 300
